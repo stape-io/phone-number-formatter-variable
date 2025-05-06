@@ -1,5 +1,7 @@
-homepage: "https://stape.io/"
+homepage: 'https://stape.io/'
 versions:
+  - sha: 8142d7ce2cbedc9e4e78e5e9ff000917d5c66a64
+    changeNotes: Fix the Swedish national number bug (leading 0). Add tests. Refactor code.
   - sha: 8e3bc503a7d85f5ef286ad48410709f10bb1beac
     changeNotes: Fix the Lithuanian number bug (leading 0 or 8). Add tests. Refactor code.
   - sha: 1018f88c1c587c9ae58fbe538d685b9d48deebaf
