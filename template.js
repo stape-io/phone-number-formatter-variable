@@ -2,7 +2,7 @@ const makeString = require('makeString');
 
 return formatPhoneNumber(data.phoneNumber, data.country);
 
-function formatPhoneNumber(phoneNum, countryCode) {
+function formatPhoneNumber(phoneNum, country) {
   if (!phoneNum || phoneNum === 'undefined') return undefined;
 
   let phone = makeString(phoneNum);
@@ -13,9 +13,9 @@ function formatPhoneNumber(phoneNum, countryCode) {
   phone = phone.split('(').join('');
   phone = phone.split(')').join('');
 
-  // Mapping of country codes to their respective area codes
+  // Mapping of countries to their respective country codes
   // prettier-ignore
-  const areaCodes = {
+  const countryCodes = {
     'ca': '1',  'us': '1',  'kz': '7',  'ru': '7',  'eg': '20', 'za': '27', 'gr': '30', 'nl': '31',
     'be': '32', 'fr': '33', 'es': '34', 'hu': '36', 'it': '39', 'ro': '40', 'ch': '41', 'at': '43',
     'gb': '44', 'dk': '45', 'se': '46', 'no': '47', 'pl': '48', 'de': '49', 'pe': '51', 'mx': '52',
@@ -47,26 +47,41 @@ function formatPhoneNumber(phoneNum, countryCode) {
     'tm': '993', 'az': '994', 'ge': '995', 'kg': '996', 'uz': '998'
   };
 
-  countryCode = countryCode ? makeString(countryCode) : 'none';
+  const countrySpecificTransformation = {
+    // See: https://www.sent.dm/resources/lt#the-transition-from-8-to-0-what-you-need-to-know
+    lt: (phone) => {
+      if (phone[0] === '0' || phone[0] === '8') return phone.substring(1);
+    },
+    // Handle Swedish national phone number starting with 0 (but not 0046).
+    // See: https://dialaxy.com/blogs/sweden-phone-number-format/
+    se: (phone) => {
+      if (phone[0] === '0') return phone.substring(1);
+    }
+  };
 
-  const areaCode = areaCodes[countryCode.toLowerCase()];
+  country = country ? makeString(country).toLowerCase() : 'none';
 
-  if (!areaCode) {
-    return phone.indexOf('+') === 0 ? phone : '+' + phone;
+  const countryCode = countryCodes[country];
+
+  // Return phone if no area code found for the supplied country code.
+  if (!countryCode) {
+    return phone[0] === '+' ? phone : '+' + phone;
   }
 
-  if (phone.indexOf('+' + areaCode) === 0) {
+  // If phone starts with +<countryCode>, return phone.
+  if (phone.indexOf('+' + countryCode) === 0) {
     return phone;
   }
 
-  if (phone.indexOf('00' + areaCode) === 0) {
+  // If phone start with 00<countryCode>, return phone.
+  if (phone.indexOf('00' + countryCode) === 0) {
     return '+' + phone.substring(2);
   }
 
-  // See: https://www.sent.dm/resources/LT#the-transition-from-8-to-0-what-you-need-to-know
-  if (countryCode === 'lt' && (phone[0] === '0' || phone[0] === '8')) {
-    phone = phone.substring(1);
+  const transformation = countrySpecificTransformation[country];
+  if (transformation) {
+    phone = transformation(phone);
   }
 
-  return '+' + areaCode + phone;
+  return '+' + countryCode + phone;
 }

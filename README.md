@@ -7,6 +7,7 @@ A Google Tag Manager variable template that formats phone numbers to the E.164 s
 - Automatic country code prefixing based on ISO 3166 country codes
 - Support for 200+ country codes
 - Special handling for Lithuanian numbers (8/0 prefix conversion)
+- Special handling for Swedish national numbers (0 prefix conversion)
 
 ## Features
 
