@@ -6,8 +6,7 @@ A Google Tag Manager variable template that formats phone numbers to the E.164 s
 - Removal of special characters (spaces, dashes, parentheses)
 - Automatic country code prefixing based on ISO 3166 country codes
 - Support for 200+ country codes
-- Special handling for Lithuanian numbers (8/0 prefix conversion)
-- Special handling for Swedish national numbers (0 prefix conversion)
+- Special handling for national/trunk prefixes for some countries (Lithuania, Sweden, Hungary, Germany etc.)
 
 ## Features
 
@@ -26,5 +25,7 @@ A Google Tag Manager variable template that formats phone numbers to the E.164 s
 ## Open Source
 
 Initial development was done by [Lars Friis](https://www.linkedin.com/in/lars-friis/).
+
+Maintenance and unit tests added by [Giovani Ortolani Barbosa](https://www.linkedin.com/in/giovani-ortolani-barbosa/).
 
 Phone Number Formatter Variable for GTM Server Container is developed and maintained by [Stape Team](https://stape.io/) under the Apache 2.0 license.
