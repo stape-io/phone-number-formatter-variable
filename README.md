@@ -22,6 +22,10 @@ A Google Tag Manager variable template that formats phone numbers to the E.164 s
 - Specify country code using ISO 3166 format (optional)
 - Returns formatted E.164 phone number with proper country code prefix
 
+## Useful links:
+
+- [Step-by-step guide on how to configure Phone Number Formatter variable](https://stape.io/blog/phone-number-formatter-variable-for-google-tag-manager-container)
+
 ## Open Source
 
 Initial development was done by [Lars Friis](https://www.linkedin.com/in/lars-friis/).
