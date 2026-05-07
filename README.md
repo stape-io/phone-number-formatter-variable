@@ -33,3 +33,6 @@ Initial development was done by [Lars Friis](https://www.linkedin.com/in/lars-fr
 Maintenance and unit tests added by [Giovani Ortolani Barbosa](https://www.linkedin.com/in/giovani-ortolani-barbosa/).
 
 Phone Number Formatter Variable for GTM Server Container is developed and maintained by [Stape Team](https://stape.io/) under the Apache 2.0 license.
+
+### GTM Gallery Status
+🟢 [Listed](https://tagmanager.google.com/gallery/#/owners/stape-io/templates/phone-number-formatter-variable)
